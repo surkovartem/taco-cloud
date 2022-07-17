@@ -37,19 +37,20 @@ public class DesignTacoController {
   /**
    * Метод добавления ингредиентов в модель.
    */
+
   @ModelAttribute
   public void addIngredientsToModel(Model model) {
     List<Ingredient> ingredients = Arrays.asList(
-      new Ingredient("FLTO", "Floure Tortilla", Type.WRAP),
-      new Ingredient("COTO", "Corn Tortilla", Type.WRAP),
-      new Ingredient("GRBF", "Ground Beef", Type.PROTEIN),
-      new Ingredient("CARN", "Carnitas", Type.PROTEIN),
-      new Ingredient("TMTO", "Diced Tomatoes", Type.VEGGIES),
-      new Ingredient("LETC", "Lettuce", Type.VEGGIES),
-      new Ingredient("CHED", "Cheddar", Type.CHEESE),
+      new Ingredient("FLTO", "Пшеничная тортилья", Type.WRAP),
+      new Ingredient("COTO", "Кукурузная тортилья", Type.WRAP),
+      new Ingredient("GRBF", "Фарш из говядины", Type.PROTEIN),
+      new Ingredient("CARN", "Карнитас", Type.PROTEIN),
+      new Ingredient("TMTO", "Томаты", Type.VEGGIES),
+      new Ingredient("LETC", "Салат", Type.VEGGIES),
+      new Ingredient("CHED", "Чеддер", Type.CHEESE),
       new Ingredient("JACK", "Monterrey Jack", Type.SAUCE),
-      new Ingredient("SLSA", "Salsa", Type.SAUCE),
-      new Ingredient("SRCR", "Sour Cream", Type.SAUCE)
+      new Ingredient("SLSA", "Сальса", Type.SAUCE),
+      new Ingredient("SRCR", "Сметана", Type.SAUCE)
     );
 
     Type[] types = Ingredient.Type.values();
@@ -58,7 +59,6 @@ public class DesignTacoController {
           type.toString().toLowerCase(),
           filterByType(ingredients, type)
       );
-      model.addAttribute("hello", "Artem");
     }
   }
 
@@ -67,6 +67,7 @@ public class DesignTacoController {
    * Хранит состояние собираемого заказа, пока клиент
    * выбирает ингредиенты для тако несколькими запросами.
    */
+
   @ModelAttribute(name = "tacoOrder")
   public TacoOrder order() {
     return new TacoOrder();
@@ -85,6 +86,7 @@ public class DesignTacoController {
   /**
    * Обработка запроса GET с путем /design.
    */
+
   @GetMapping
   public String showDesignForm() {
     return "design";
@@ -96,6 +98,7 @@ public class DesignTacoController {
    * @param ingredients ингредиенты
    * @param type тип ингредиента
    */
+
   private Iterable<Ingredient> filterByType(List<Ingredient> ingredients, Type type) {
     return ingredients
         .stream()
