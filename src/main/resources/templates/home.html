@@ -7,9 +7,40 @@
         <link href="webjars/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body>
+        <div class="container-fluid">
+            <header class="p-3 bg-primary text-white">
+                <div class="container">
+                    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-decoration-none" style="color: white">
+                            <strong>Taco-Cloud</strong>
+                        </a>
+                        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
+                            style="margin-left: 50px;">
+                            <li><a th:href="@{/design}" class="nav-link px-2" style="color: white"><i>Сделать заказ</i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <br>
         <div class="container">
-            <h1>Welcome to...</h1>
-            <img th:src="@{/images/tacos.jpg}" width="30%">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <img th:src="@{/images/tacos.jpg}" class="rounded img-fluid" alt="Тако">
+                </div>
+                <div class="col-md-6">
+                    <h2>Тако</h2>
+                    <div class="infoText">
+                        <p>
+                            Традиционное блюдо <i>мексиканской кухни</i>. Тако состоит из кукурузной или пшеничной тортильи
+                            c разнообразной начинкой - говядиной, свининой, курицей, морепродуктами, чоризо, пережаренными бобами,
+                            овощами, тушёной мякотью мексиканского кактуса. В качестве приправы служат сыр, кинза, лук, сальса,
+                            гуакамоле. Тако едят без столовых приборов, складывая тортилью с начинкой пополам. Заведения,
+                            специализирующиеся на подаче тако, называются <i>такериями</i>.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <script src="webjars/jquery/3.6.0/jquery.min.js"></script>

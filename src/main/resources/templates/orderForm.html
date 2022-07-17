@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Taco-Cloud</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+          crossorigin="anonymous">
+</head>
+<body>
+    <div class="container-fluid">
+        <header class="p-3 bg-primary text-white">
+            <div class="container">
+                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                    <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-decoration-none" style="color: white">
+                        <strong>Taco-Cloud</strong>
+                    </a>
+                </div>
+            </div>
+        </header>
+    </div>
+    <br>
+
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <img th:src="@{/images/tacos.jpg}" class="rounded img-fluid" alt="Тако">
+            </div>
+            <div class="col-md-6">
+                <h2>Тако</h2>
+                <div class="infoText">
+                    <p>
+                        Традиционное блюдо <i>мексиканской кухни</i>. Тако состоит из кукурузной или пшеничной тортильи
+                        c разнообразной начинкой - говядиной, свининой, курицей, морепродуктами, чоризо, пережаренными бобами,
+                        овощами, тушёной мякотью мексиканского кактуса. В качестве приправы служат сыр, кинза, лук, сальса,
+                        гуакамоле. Тако едят без столовых приборов, складывая тортилью с начинкой пополам. Заведения,
+                        специализирующиеся на подаче тако, называются <i>такериями</i>.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <form method="POST" th:action="@{/orders}" th:object="${tacoOrder}">
+            <h2>Заказ на <i>твой</i> тако создан!</h2>
+            <a th:href="@{/design}" id="another">Добавить еще один тако :)</a><br/>
+            <hr>
+            <h3>Созданные тако:</h3>
+            <ul class="list-group">
+                <li th:each="taco : ${tacoOrder.tacos}" class="list-group-item">
+                    <span th:text="${taco.name}">tacoName</span>
+                </li>
+            </ul>
+            <br>
+            <h3>Адрес доставки:</h3>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="DeliveryName">Имя</span>
+                <input type="text" th:field="*{deliveryName}"
+                       class="form-control" aria-label="Sizing example input" aria-describedby="DeliveryName">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="DeliveyRegion">Область:</span>
+                <input type="text" th:field="*{deliveryRegion}"
+                       class="form-control" aria-label="Sizing example input" aria-describedby="DeliveyRegion">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="DeliveryCity">Город:</span>
+                <input type="text" th:field="*{deliveryCity}"
+                       class="form-control" aria-label="Sizing example input" aria-describedby="DeliveryCity">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="DeliveryStreet">Улица:</span>
+                <input type="text" th:field="*{deliveryStreet}"
+                       class="form-control" aria-label="Sizing example input" aria-describedby="DeliveryStreet">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="DeliveryIndexCode">Почтовый индекс:</span>
+                <input type="text" th:field="*{deliveryIndex}"
+                       class="form-control" aria-label="Sizing example input" aria-describedby="DeliveryIndexCode">
+            </div>
+            <h3>Оплата по карте:</h3>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="DeliveryCardNumber">Номер карты:</span>
+                <input type="text" th:field="*{ccNumber}"
+                       class="form-control" aria-label="Sizing example input" aria-describedby="DeliveryCardNumber">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="DeliveryExpiration">Срок действия:</span>
+                <input type="text" th:field="*{ccExpiration}"
+                       class="form-control" aria-label="Sizing example input" aria-describedby="v">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="DeliveyCVC">CVC:</span>
+                <input type="text" th:field="*{ccCvc}"
+                       class="form-control" aria-label="Sizing example input" aria-describedby="DeliveyCVC">
+            </div>
+            <input type="submit" value="Оформить заказ" class="btn btn-primary" style="margin-top: 5px;"/>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+</body>
+</html>

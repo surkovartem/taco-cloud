@@ -16,14 +16,14 @@ import lombok.Data;
 @Data
 public class TacoOrder {
 
-  private String deliverName;
-  private String deliverStreet;
-  private String deloverCity;
-  private String deliverState;
-  private String deliverZip;
+  private String deliveryName;
+  private String deliveryStreet;
+  private String deliveryCity;
+  private String deliveryRegion;
+  private String deliveryIndex;
   private String ccNumber;
   private String ccExpiration;
-  private String ccCvv;
+  private String ccCvc;
 
   private List<Taco> tacos = new ArrayList<>();
 

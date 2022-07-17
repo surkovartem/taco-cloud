@@ -11,14 +11,24 @@
             margin-top: 25px;
             margin-bottom: 25px;
         }
-
         .infoText {
             text-align:justify;
         }
     </style>
 </head>
 <body>
-    </br>
+    <div class="container-fluid">
+        <header class="p-3 bg-primary text-white">
+            <div class="container">
+                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                    <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-decoration-none" style="color: white">
+                        <strong>Taco-Cloud</strong>
+                    </a>
+                </div>
+            </div>
+        </header>
+    </div>
+    <br>
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-6">
@@ -37,7 +47,7 @@
                 </div>
             </div>
         </div>
-        </br>
+        <br>
         <h2><i>Собери свое тако!</i></h2>
         <hr>
         <div class="form">
@@ -77,7 +87,7 @@
                         </div>
                     </div>
                 </div>
-                </br>
+                <br>
                 <div class="row">
                     <div class="col-4">
                         <div id="veggies">
@@ -102,11 +112,11 @@
                         </div>
                     </div>
                 </div>
-                </br>
+                <br>
                 <div>
                     <h3>Дай имя своему тако:</h3>
                     <input type="text" th:field="*{name}" placeholder="Имя тако.." style="display: block;"/>
-                    <button type="button" class="btn btn-primary" style="margin-top: 5px;">Заказать Тако!</button>
+                    <input type="submit" value="Заказать тако!" class="btn btn-primary" style="margin-top: 5px;"/>
                 </div>
             </form>
         </div>
