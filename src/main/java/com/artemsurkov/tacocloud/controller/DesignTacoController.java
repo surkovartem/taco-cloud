@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -27,7 +28,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
  * @version 1.0
  * @since 16.07.2022
  */
-
 @Slf4j
 @Controller
 @RequestMapping("/design")
@@ -37,7 +37,7 @@ public class DesignTacoController {
   /**
    * Метод добавления ингредиентов в модель.
    */
-
+  //TODO: заменить получение ингредиентов с жесткого способоса на получение из БД.
   @ModelAttribute
   public void addIngredientsToModel(Model model) {
     List<Ingredient> ingredients = Arrays.asList(
@@ -67,7 +67,6 @@ public class DesignTacoController {
    * Хранит состояние собираемого заказа, пока клиент
    * выбирает ингредиенты для тако несколькими запросами.
    */
-
   @ModelAttribute(name = "tacoOrder")
   public TacoOrder order() {
     return new TacoOrder();
@@ -86,19 +85,40 @@ public class DesignTacoController {
   /**
    * Обработка запроса GET с путем /design.
    */
-
   @GetMapping
   public String showDesignForm() {
     return "design";
   }
 
   /**
+   * Метод обработки POST-запроса по пути /design.
+   * При отправке поля формы присваиваются свойствам объекта Taco,
+   * который затем передается в качестве параметра данному методу.
+   * Получив этот объект, метод добавляет объект Taco в объект TacoOrder,
+   * который также передается в параметре, а затем записывает его в журнал.
+   * Аннотация @ModelAttribute перед параметром TacoOrder указывает, что он
+   * должен использовать объект TacoOrder, который был помещен в модель
+   * методом order() с аннатацией @ModelAttribute.
+   *
+   * @param taco полученые из формы свойства объекта
+   * @param tacoOrder объект, в который кладется полученный Taco
+   * @return "redirect", представление с перенаправлением на другую страницу.
+   */
+  @PostMapping
+  public String processTaco(Taco taco, @ModelAttribute TacoOrder tacoOrder) {
+    tacoOrder.addTaco(taco);
+    log.info("Обработка тако {}", taco);
+    return "redirect:/orders/current";
+  }
+
+
+  /**
    * Фильтрация ингредиентов по типам.
    *
    * @param ingredients ингредиенты
    * @param type тип ингредиента
+   * @return сортированный List ингредиентов по type.
    */
-
   private Iterable<Ingredient> filterByType(List<Ingredient> ingredients, Type type) {
     return ingredients
         .stream()
